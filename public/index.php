@@ -1,5 +1,5 @@
 <?php
-require "../Init/Init.php";
+require "../src/Init/Init.php";
 
 $init = new BackendAPI\Init();
 
