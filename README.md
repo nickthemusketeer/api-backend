@@ -2,6 +2,8 @@
 The backend API for coughdetect.
 
 ## Usage
+Requires Apache.
+
 Run ```composer dump-autoload -o``` in the project directory.
 
 Serve the public folder with your webserver and make sure the webserver user has read access to all the files in this project.
@@ -24,6 +26,8 @@ The body must be raw content of a wav file otherwise it won't work.
 The entry point is public/index.php. This runs the init function which is located in Init/Init.php under the Init class.
 
 Autoloading is done with PSR-4 in Composer.
+
+Requires apache because of the usage of getallheaders() in src/API/ReceivedData.
 
 Run ```composer dump-autoload -o``` to generate the autoload file from the composer.json
 
