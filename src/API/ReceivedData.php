@@ -12,13 +12,25 @@ class ReceivedData {
 
     function checkFile() {
         $headers = getallheaders();
-        $clength = $headers["Content-Length"];
-        $clength = (int)$clength;
-        if (strlen($this->file) !== $clength) {
-            $this->errorhandler->raiseError(409, "Fatal: Content Length doesn't match");
+        if (isset($headers["Content-Type"])) {
+
+            if ($headers["Content-Type"] === "audio/wav") {
+
+                $clength = $headers["Content-Length"];
+                $clength = (int)$clength;
+                if (strlen($this->file) !== $clength) {
+                    $this->errorhandler->raiseError(409, "Fatal: Content-Length header doesn't match length of data");
+                } else {
+                    $return = $this->writeFile();
+                    return $return;
+                }
+
+            } else {
+                $this->errorhandler->raiseError(400, "Fatal: Wrong Content-Type");
+            }
+
         } else {
-            $return = $this->writeFile();
-            return $return;
+            $this->errorhandler->raiseError(500, "Fatal: Content-Type header isn't set");
         }
     }
 
