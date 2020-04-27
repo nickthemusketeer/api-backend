@@ -22,8 +22,9 @@ class Analysis {
     private function returnResult($result) {
         $result = ["percentage" => $result];
         $jsonresult = json_encode($result);
-        echo $jsonresult;
         http_response_code(200);
+        header("Content-Type: application/json");
+        echo $jsonresult;
     }
 
 }

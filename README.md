@@ -31,5 +31,15 @@ Requires apache because of the usage of getallheaders() in src/API/ReceivedData.
 
 Run ```composer dump-autoload -o``` to generate the autoload file from the composer.json
 
+On a request it will write the wav file to a new file in resources/.
+
+If the data that is sent doesn't have the same length as the "Content-Length" header it will return a 409 and die silently.
+
+After the data is written the wav filepath will get passed to bin/demo.py as an argument (this is handled in src/API/Analysis.php)
+
+If the value returned from the python script is non-numeric it will return a 500 status code and die silently.
+
+Otherwise it will return JSON with {percentage: value_returned}.
+
 ### Packages
 No extra packages required so far.
