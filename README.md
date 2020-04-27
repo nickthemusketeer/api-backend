@@ -29,7 +29,7 @@ Autoloading is done with PSR-4 in Composer.
 
 Requires apache because of the usage of getallheaders() in src/API/ReceivedData.
 
-Run ```composer dump-autoload -o``` to generate the autoload file from the composer.json
+Run ```composer dump-autoload -o``` to generate the autoload file from the composer.json.
 
 ### Packages
 No extra packages required so far.
