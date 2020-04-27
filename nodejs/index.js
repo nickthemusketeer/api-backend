@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 const type = upload.single('upl');
 
-app.post('/api', type, async (req, res) => {
+app.post('/eval', type, async (req, res) => {
   console.log(req.file);
 
   const percentage = await analyse(req.file.filename);
